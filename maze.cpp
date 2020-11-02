@@ -153,6 +153,7 @@ void Maze::print_vertical(int &curr, int &cell_width) {
 
 void Maze::_print_vertical(int &curr, int &cell_width, bool print_character) {
     for (int c = 0; c < cols; c++, curr++) {
+        int colour = (curr)%5+53;
         bool in_solution = is_in_solution(curr);
         if (curr % cols == 0) {
             cout << "|";
@@ -191,7 +192,7 @@ void Maze::_print_vertical(int &curr, int &cell_width, bool print_character) {
                             // RIGHT
                             if (is_in_solution(curr+1) && is_related(curr, curr+1) && !(is_in_solution(curr-1) && is_related(curr, curr-1))) {
                                 if (w >= cell_width/2) {
-                                    cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                                    cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
                                 }
                                 else {
                                     cout << " ";
@@ -200,7 +201,7 @@ void Maze::_print_vertical(int &curr, int &cell_width, bool print_character) {
                             // LEFT
                             else if (is_in_solution(curr-1) && is_related(curr, curr-1) && !(is_in_solution(curr+1) && is_related(curr, curr+1))) {
                                 if (w <= cell_width/2) {
-                                    cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                                    cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
                                 }
                                 else {
                                     cout << " ";
@@ -208,11 +209,11 @@ void Maze::_print_vertical(int &curr, int &cell_width, bool print_character) {
                             }
                             // BOTH
                             else if (is_in_solution(curr-1) && is_in_solution(curr+1) && is_related(curr, curr-1) && is_related(curr, curr+1)) {
-                                cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                                cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
                             }
                             else {
                                 if (w == cell_width/2) {
-                                    cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                                    cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
                                 }
                                 else {
                                     cout << " ";
@@ -223,7 +224,7 @@ void Maze::_print_vertical(int &curr, int &cell_width, bool print_character) {
                     else if ((in_solution && is_in_solution(curr-cols) && is_related(curr, curr-cols)) || curr==0) {
                         for (int w = 0; w < cell_width; w++) {
                             if (w == cell_width/2) {
-                                cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                                cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
                             }
                             else {
                                 cout << " ";
@@ -255,7 +256,7 @@ void Maze::_print_vertical(int &curr, int &cell_width, bool print_character) {
         }
         else if (is_related(curr, curr+1)) {   // relation check to right
             if (!this->show_num && print_character && solved && in_solution && is_in_solution(curr+1)) {
-                cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
             }
             else {
                 cout << " ";
@@ -269,6 +270,7 @@ void Maze::_print_vertical(int &curr, int &cell_width, bool print_character) {
 
 void Maze::print_horizontal(int &curr, int &cell_width) {
    for (int c = 0; c < cols; ++c, ++curr) {
+        int colour = (curr)%5+53;
         if (curr % cols == 0) {
             cout << "|";
         }
@@ -283,7 +285,7 @@ void Maze::print_horizontal(int &curr, int &cell_width) {
                 if ((solved && is_in_solution(curr) && is_in_solution(curr+cols))){
                     for (int w = 0; w < cell_width; w++) {
                         if (w == cell_width/2) {
-                            cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                            cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
                         }
                         else {
                             cout << " ";
@@ -380,9 +382,10 @@ void Maze::_print() {
         }
     }
     for (int w = 0; w <= cell_width; w++){
+        int colour = (curr)%5+53;
         if (is_in_solution(curr)) {
             if (w == cell_width/2) {
-                cout << "\x1b[48;5;" << 57 << "m" << " " << "\033[0m";
+                cout << "\x1b[48;5;" << colour << "m" << " " << "\033[0m";
             }
             else {
                 cout << " ";
