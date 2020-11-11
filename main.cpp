@@ -89,9 +89,9 @@ int main() {
           maze.solve();
           maze.show();
 
-          // maze.generate(110, 235);
-          // maze.solve();
-          // maze.show();
+          //maze.generate(110, 235);
+          //maze.solve();
+          //maze.show();
 
           cout << "| TEST 3.A END"             << endl
                << "|_________________________" << endl;
