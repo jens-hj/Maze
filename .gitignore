@@ -16,3 +16,6 @@
 
 # Vscode folders
 *.vscode
+
+# Nix
+.direnv
